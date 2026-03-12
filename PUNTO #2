@@ -1,0 +1,17 @@
+def calcular_descuento(precio, descuento=10):
+    precio_final = precio - (precio * descuento / 100)
+    return precio_final
+
+precios_finales = []
+
+print("Cálculo de precios con descuento (10% por defecto):")
+
+for i in range(3):
+    monto = float(input(f"Ingrese el precio del producto {i+1}: "))
+    # Llamamos a la función usando el parámetro por omisión
+    resultado = calcular_descuento(monto)
+    precios_finales.append(resultado)
+    print(f"Precio con descuento: {resultado:.2f}")
+
+total_a_pagar = sum(precios_finales)
+print(f"\nEl valor total a pagar por los 3 productos es: {total_a_pagar:.2f}")
