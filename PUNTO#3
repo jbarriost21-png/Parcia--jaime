@@ -1,0 +1,18 @@
+def analizar_texto(*args, **kwargs):
+    # Unimos todos los textos en uno solo para facilitar el conteo
+    texto_completo = " ".join(args)
+    
+    # Verificamos si se solicitó contar palabras
+    if kwargs.get("contar_palabras"):
+        # split() divide por espacios en blanco
+        total_palabras = len(texto_completo.split())
+        print(f"Cantidad total de palabras: {total_palabras}")
+        
+    # Verificamos si se solicitó contar vocales
+    if kwargs.get("contar_vocales"):
+        vocales = "aeiouAEIOU"
+        total_vocales = sum(1 for letra in texto_completo if letra in vocales)
+        print(f"Cantidad total de vocales: {total_vocales}")
+
+# Ejemplo de uso:
+analizar_texto("Hola mundo", "Python es genial", contar_vocales=True, contar_palabras=True)
