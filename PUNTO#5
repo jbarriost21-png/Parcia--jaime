@@ -1,0 +1,65 @@
+#Sistema de gestión de estudiantes (mini-proyecto parcial).
+#Cree un programa que:
+#1. Permita ingresar estudiantes con su nombre y nota (usando ciclo while, hasta que
+#el usuario escriba "fin").
+#2. Guarde los datos en una lista de diccionarios.
+#Ejemplo: [{"nombre": "Ana", "nota": 4.5}, {"nombre": "Luis",
+#"nota": 3.2}]
+#3. Defina funciones para:
+#○ promedio_notas(estudiantes) → retorna el promedio.
+#○ mejor_estudiante(estudiantes) → retorna el nombre y nota del mejor.
+#○ peor_estudiante(estudiantes) → retorna el nombre y nota del peor.
+#4. Imprima un reporte final: número de estudiantes, promedio, mejor y peor estudiante.
+#Extra (5% bonus): ordenar los estudiantes de menor a mayor nota y mostrarlos en pantalla.
+def promedio_notas(estudiantes):
+    if not estudiantes: return 0
+    # Corregido: est["nota"] en lugar de est[{"nota"}]
+    total = sum(est["nota"] for est in estudiantes)
+    return total / len(estudiantes)
+
+def mejor_estudiante(estudiantes):
+    # Retorna el diccionario del estudiante con la nota más alta
+    return max(estudiantes, key=lambda x: x["nota"])
+
+def peor_estudiante(estudiantes):
+    # Retorna el diccionario del estudiante con la nota más baja
+    return min(estudiantes, key=lambda x: x["nota"])
+
+# 1. Ingreso de datos
+lista_estudiantes = []
+while True:
+    nombre = input("Nombre del estudiante (o 'fin' para terminar): ")
+    if nombre.lower() == "fin":
+        break
+    try:
+        nota = float(input(f"Ingrese la nota de {nombre}: "))
+        lista_estudiantes.append({"nombre": nombre, "nota": nota})
+    except ValueError:
+        print("Error: Ingrese un número válido para la nota.")
+
+# 4. Reporte final
+if lista_estudiantes:
+    promedio = promedio_notas(lista_estudiantes)
+    mejor = mejor_estudiante(lista_estudiantes)
+    peor = peor_estudiante(lista_estudiantes)
+    
+    print("\n" + "="*30)
+    print("      REPORTE FINAL")
+    print("="*30)
+    print(f"Total estudiantes: {len(lista_estudiantes)}")
+    print(f"Promedio general:  {promedio:.2f}")
+    print(f"Mejor estudiante:  {mejor['nombre']} ({mejor['nota']})")
+    print(f"Peor estudiante:   {peor['nombre']} ({peor['nota']})")
+
+    # Extra (Bonus): Ordenar de menor a mayor
+    print("\n--- LISTADO ORDENADO (Nota Ascendente) ---")
+    estudiantes_ordenados = sorted(lista_estudiantes, key=lambda x: x["nota"])
+    for est in estudiantes_ordenados:
+        print(f"{est['nombre']}: {est['nota']}")
+else:
+    print("No se ingresaron datos de estudiantes.")
+
+
+    
+
+        
