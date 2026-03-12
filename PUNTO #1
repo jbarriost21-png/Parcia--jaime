@@ -1,0 +1,21 @@
+numero = int(input("Introduce un número entero positivo: "))
+
+primos_encontrados = 0
+
+print(f"Números primos hasta el {numero}:")
+
+for num in range(2, numero + 1):
+    es_primo = True
+    # Verificamos si num tiene divisores
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            es_primo = False
+            break
+    
+    if es_primo:
+        print(num, end=" ")
+        primos_encontrados += 1
+
+print(f"\n\nSe encontraron {primos_encontrados} números primos.")
+
+    
